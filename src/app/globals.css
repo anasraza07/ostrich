@@ -12,15 +12,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.text-outline {
+  -webkit-text-stroke-width: 1px; /* Adjust width as needed */
+  -webkit-text-stroke-color: black; /* Choose your outline color */
+  -webkit-text-fill-color: transparent; /* Makes the fill transparent */
+  color: transparent; /* Fallback for older browsers */
 }
