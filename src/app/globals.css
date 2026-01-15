@@ -14,11 +14,20 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  color: #151515;
 }
 
 .text-outline {
-  -webkit-text-stroke-width: 1px; /* Adjust width as needed */
-  -webkit-text-stroke-color: black; /* Choose your outline color */
-  -webkit-text-fill-color: transparent; /* Makes the fill transparent */
-  color: transparent; /* Fallback for older browsers */
+  -webkit-text-stroke-width: 1px;
+  /* Adjust width as needed */
+  -webkit-text-stroke-color: black;
+  /* Choose your outline color */
+  -webkit-text-fill-color: transparent;
+  /* Makes the fill transparent */
+  color: transparent;
+  /* Fallback for older browsers */
+}
+
+.group:hover::before {
+  transform: scale(1);
 }

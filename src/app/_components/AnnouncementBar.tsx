@@ -23,8 +23,8 @@ export default function AnnouncementBar() {
     <div className="bg-[#151515]">
       <Marquee autoFill pauseOnHover speed={40}>
         <ul className="flex items-center gap-10 p-3">
-          {announcements.map(a => (
-            <li className="flex gap-4 items-center text-[#C4C4C4]">
+          {announcements.map((a, index) => (
+            <li key={index} className="flex gap-4 items-center text-[#C4C4C4]">
               {a.icon}
               <p className="text-[12px] text-white font-bold">{a.text}</p>
             </li>
