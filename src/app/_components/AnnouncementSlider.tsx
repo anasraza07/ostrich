@@ -18,7 +18,7 @@ const announcements = [{
   text: "Customer service: info@theostrich.pk"
 },]
 
-export default function AnnouncementBar() {
+export default function AnnouncementSlider() {
   return (
     <div className="bg-[#151515]">
       <Marquee autoFill pauseOnHover speed={40}>

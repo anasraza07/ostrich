@@ -1,122 +1,293 @@
 "use client";
 import Image from "next/image";
-import AnnouncementBar from "./_components/AnnouncementBar";
+import AnnouncementBar from "./_components/AnnouncementSlider";
 import Header from "./_components/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from "swiper/modules";
 import Marquee from "react-fast-marquee";
+import Collection from "./_components/Collection";
+
+const collections = [
+  {
+    id: 1,
+    collectionBg: "/images/winter/bg.jpg",
+    collectionInfo: {
+      heading: "Winter Sale",
+      description: "New Winter Arrivals",
+      link: "Shop Winter Collection"
+    },
+    products: [{
+      id: 1,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/2_e6213d3f-c2d6-4669-941e-99938ba78cc1_375x350_crop_center.jpg?v=1732289751",
+      name: "black leather jacket",
+      oldPrice: null,
+      price: 2500,
+      sizes: ["M", "XL", "XXL"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/blck_375x350_crop_center.jpg?v=1766582585",
+      name: "Black Sleeveless Puffer Jacket",
+      oldPrice: 2999,
+      price: 2000,
+      sizes: ["M", "L", "XL"]
+    }, {
+      id: 3,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/DSC_1044_375x350_crop_center.jpg?v=1768381246",
+      name: "Bomber jacket LA",
+      oldPrice: 3500,
+      price: 2500,
+      sizes: ["S", "M", "L", "XL", "XXL"]
+    }, {
+      id: 4,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/DSC_1115_375x350_crop_center.jpg?v=1768381183",
+      name: "Bomber jacket bull",
+      oldPrice: null,
+      price: 2500,
+      sizes: ["S", "M", "L", "XL", "XXL"]
+    }, {
+      id: 5,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/Final_Image_brown_puffer_375x350_crop_center.jpg?v=1768393714",
+      name: "dark brown sleeveless puffer jacket",
+      oldPrice: 2999,
+      price: 999,
+      sizes: ["S", "M", "L"]
+    }]
+  }, {
+    id: 2,
+    collectionBg: "/images/polos/bg.jpg",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: "Shop Premium Polo"
+    },
+    products: [{
+      id: 1,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2387_375x350_crop_center.jpg?v=1743838237",
+      name: "premium ostrich grey",
+      oldPrice: 3000,
+      price: 1250,
+      sizes: ["S", "L", "XL"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2272_375x350_crop_center.jpg?v=1743838039",
+      name: "premium ostrich lavender d",
+      oldPrice: 3000,
+      price: 1250,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 3,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2065_375x350_crop_center.jpg?v=1743838496",
+      name: "premium ostrich blue",
+      oldPrice: 3000,
+      price: 1250,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 4,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2108_375x350_crop_center.jpg?v=1743838528",
+      name: "premium ostrich powder blue",
+      oldPrice: 3000,
+      price: 1250,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 5,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/DSC_0402_375x350_crop_center.jpg?v=1747139162",
+      name: "premium ostrich black",
+      oldPrice: 3000,
+      price: 1250,
+      sizes: ["S", "M", "L", "XL"]
+    }]
+  }, {
+    id: 3,
+    collectionBg: "https://theostrich.pk/cdn/shop/files/Drifit_Banner_958adba5-2c83-4ff6-b061-c9cc8329260e.jpg?v=1748281121",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: ""
+    },
+    products: [{
+      id: 1,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/FarmanDri-FitDarkGrey-4_375x350_crop_center.png?v=1740553839",
+      name: "ostrich drifit dark grey",
+      oldPrice: 2000,
+      price: 799,
+      sizes: ["S", "M", "L"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/FarmanDri-FitMaroon-4_375x350_crop_center.png?v=1740553893",
+      name: "ostrich drifit dark maroon",
+      oldPrice: 2000,
+      price: 799,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 3,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/FarmanDri-FitLightGrey-4_375x350_crop_center.png?v=1740554290",
+      name: "ostrich drifit light grey",
+      oldPrice: 2000,
+      price: 799,
+      sizes: ["S", "M", "L", "XL"]
+    },]
+  }, {
+    id: 4,
+    collectionBg: "https://theostrich.pk/cdn/shop/files/T_shirt.jpg?v=1748281121",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: ""
+    },
+    products: [{
+      id: 1,
+      thumbnail: "http://theostrich.pk/cdn/shop/files/ZAW_2295_375x350_crop_center.jpg?v=1744102540",
+      name: "textured light blue dri-fit tee",
+      oldPrice: 1700,
+      price: 999,
+      sizes: ["M", "L", "XL", "XXL"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2360_375x350_crop_center.jpg?v=1744103372",
+      name: "green dri-fit tee",
+      oldPrice: 1700,
+      price: 900,
+      sizes: ["M", "L", "XL", "XXL"]
+    }, {
+      id: 3,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2424_375x350_crop_center.jpg?v=1744099331",
+      name: "textured sky blue dri-fit tee",
+      oldPrice: 1700,
+      price: 999,
+      sizes: ["M"]
+    }, {
+      id: 4,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2153_375x350_crop_center.jpg?v=1744103166",
+      name: "mint green dri-fit tee",
+      oldPrice: 1700,
+      price: 999,
+      sizes: ["M", "L", "XL", "XXL"]
+    }, {
+      id: 5,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_2478_56541788-adac-4c8b-99ca-07f878eec307_375x350_crop_center.jpg?v=1744106304",
+      name: "sky blue dri-fit tee",
+      oldPrice: 1700,
+      price: 999,
+      sizes: ["M", "L", "XL", "XXL"]
+    },
+    ]
+  }, {
+    id: 5,
+    collectionBg: "https://theostrich.pk/cdn/shop/files/Cuban.jpg?v=1748281121",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: "Shop Cuban Shirts"
+    },
+    products: [{
+      id: 1,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_1795_375x350_crop_center.jpg?v=1753100095",
+      name: "grey white stripped mandrain",
+      oldPrice: 2750,
+      price: 1500,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_1782_375x350_crop_center.jpg?v=1753099982",
+      name: "peach white stripped mandrain",
+      oldPrice: 2750,
+      price: 1500,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 3,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_1745_375x350_crop_center.jpg?v=1753099847",
+      name: "blue white stripped mandrain",
+      oldPrice: 2750,
+      price: 1500,
+      sizes: ["S", "M", "L", "XL"]
+    }, {
+      id: 4,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_1697_375x350_crop_center.jpg?v=1753097483",
+      name: "black cotton shirt",
+      oldPrice: 2750,
+      price: 1500,
+      sizes: ["S", "M", "XL"]
+    }, {
+      id: 5,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/ZAW_1586_375x350_crop_center.jpg?v=1753094299",
+      name: "black stripped shirt",
+      oldPrice: 2750,
+      price: 1500,
+      sizes: ["S", "M", "L", "XXL"]
+    },
+    ]
+  }, {
+    id: 6,
+    collectionBg: "https://theostrich.pk/cdn/shop/files/jeans_b7bd5e73-73af-41ba-a095-3deac90767a1.jpg?v=1748281203",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: ""
+    },
+    products: [{
+      id: 1,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/Jeans-Pant-2_375x350_crop_center.png?v=1723223549",
+      name: "tapered jeans",
+      oldPrice: 3740,
+      price: 2299,
+      sizes: ["30", "32", "34", "36", "38"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/6_9dd510de-423a-4219-a552-be5d1f5d1d08_375x350_crop_center.jpg?v=1730109406",
+      name: "carrot fit jeans",
+      oldPrice: 3740,
+      price: 2299,
+      sizes: ["30", "32", "34", "36", "38"]
+    }, {
+      id: 3,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/6_18ab7ff4-ae6f-476c-820b-c9ceb83ae7d1_375x350_crop_center.jpg?v=1730109564",
+      name: "slim fit jeans",
+      oldPrice: 3740,
+      price: 2299,
+      sizes: ["30", "32", "34", "36", "38"]
+    }]
+  }, {
+    id: 7,
+    collectionBg: "https://theostrich.pk/cdn/shop/files/Cotton_Paints_d407bd24-6797-4596-a059-1a894b606ad2.jpg?v=1748281121",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: ""
+    },
+    products: []
+  }, {
+    id: 8,
+    collectionBg: "https://theostrich.pk/cdn/shop/files/Shorts.jpg?v=1748281121",
+    collectionInfo: {
+      heading: "",
+      description: "",
+      link: ""
+    },
+    products: [{
+      id: 1,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/1_aa4f3d9b-94cb-4c90-9738-bb4267efe626_770x700_crop_center.jpg?v=1729535507",
+      name: "terry jogger shorts (orange)",
+      oldPrice: 1700,
+      price: 999,
+      sizes: ["30", "32", "34", "38"]
+    }, {
+      id: 2,
+      thumbnail: "https://theostrich.pk/cdn/shop/files/6_765ed6f9-3e95-4462-831b-85de7a1d0073_770x700_crop_center.jpg?v=1729534502",
+      name: "terry jogger shorts (blue)",
+      oldPrice: 1700,
+      price: 999,
+      sizes: ["30", "32", "34", "38"]
+    },
+    ]
+  }
+]
 
 export default function Home() {
   return (
-    <div>
-      <AnnouncementBar />
-      <Header />
-
-      <div className="products-section">
-        <div className="img w-full">
-          <Image alt="Winter Collection" width={1350} height={760} style={{
-            width: "100%", height: "auto"
-          }} src={"/images/winter/bg.jpg"} />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-[34px] font-semibold mb-0.5 tracking-wide">Winter Sale</h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider text-[17px]">New Winter Arrivals</p>
-            <a href="#" className="text-[15px] font-medium relative">Shop Winter Collection
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img w-full max-w-97.5 max-h-90.5 mb-5">
-                <img src="https://theostrich.pk/cdn/shop/files/2_e6213d3f-c2d6-4669-941e-99938ba78cc1_375x350_crop_center.jpg?v=1732289751" alt="product" className="w-full h-full object-cover" />
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">black leather jacket
-                </h5>
-                <div className="price text-sm font-medium mb-1">Rs.2500.00</div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XXL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img w-full max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/blck_375x350_crop_center.jpg?v=1766582585" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">Black Sleeveless Puffer Jacket
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img w-full max-w-97.5 max-h-90.5 mb-5">
-                <img src="https://theostrich.pk/cdn/shop/files/2_e6213d3f-c2d6-4669-941e-99938ba78cc1_375x350_crop_center.jpg?v=1732289751" alt="product" className="w-full h-full object-cover" />
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">black leather jacket
-                </h5>
-                <div className="price text-sm font-medium mb-1">Rs.2500.00</div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XXL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img w-full max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/blck_375x350_crop_center.jpg?v=1766582585" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">Black Sleeveless Puffer Jacket
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div> 
+      <Collection collection={collections[0]} />
 
       <Marquee autoFill speed={80}>
         <div className="slider text-4xl uppercase font-bold py-7.5 flex gap-10 mr-10">
@@ -127,635 +298,10 @@ export default function Home() {
         </div>
       </Marquee>
 
-      <div className="products-section">
-        <div className="img w-full my-15">
-          <Image alt="Winter Collection" width={1350} height={760} style={{
-            width: "100%", height: "auto"
-          }} src={"/images/polos/bg.jpg"} />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-3xl font-bold mb-1 tracking-wide"></h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider"></p>
-            <a href="#" className="text-[15px] font-medium relative">Shop Winter Collection
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2387_375x350_crop_center.jpg?v=1743838237" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2272_375x350_crop_center.jpg?v=1743838039" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2387_375x350_crop_center.jpg?v=1743838237" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2272_375x350_crop_center.jpg?v=1743838039" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="products-section">
-        <div className="img w-full my-15">
-          <img src="https://theostrich.pk/cdn/shop/files/Drifit_Banner_958adba5-2c83-4ff6-b061-c9cc8329260e.jpg?v=1748281121" alt="" />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-3xl font-bold mb-1 tracking-wide"></h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider"></p>
-            <a href="#" className="text-[15px] font-medium relative">
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/FarmanDri-FitDarkGrey-4_375x350_crop_center.png?v=1740553839" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/FarmanDri-FitMaroon-4_375x350_crop_center.png?v=1740553893" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/FarmanDri-FitLightGrey-4_375x350_crop_center.png?v=1740554290" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="products-section">
-        <div className="img w-full my-15">
-          <img alt="Winter Collection" width={1350} height={760} style={{
-            width: "100%", height: "auto"
-          }} src={"https://theostrich.pk/cdn/shop/files/T_shirt.jpg?v=1748281121"} />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-3xl font-bold mb-1 tracking-wide"></h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider"></p>
-            <a href="#" className="text-[15px] font-medium relative">
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2295_375x350_crop_center.jpg?v=1744102540" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2360_375x350_crop_center.jpg?v=1744103372" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2295_375x350_crop_center.jpg?v=1744102540" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2360_375x350_crop_center.jpg?v=1744103372" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="products-section">
-        <div className="img w-full my-15">
-          <img src="https://theostrich.pk/cdn/shop/files/Cuban.jpg?v=1748281121" alt="" />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-3xl font-bold mb-1 tracking-wide"></h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider"></p>
-            <a href="#" className="text-[15px] font-medium relative">Shop Cuban Shirts
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_1795_375x350_crop_center.jpg?v=1753100095" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_1782_375x350_crop_center.jpg?v=1753099982" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-           <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_1795_375x350_crop_center.jpg?v=1753100095" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_1782_375x350_crop_center.jpg?v=1753099982" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="products-section">
-        <div className="img w-full my-15">
-          <Image alt="Winter Collection" width={1350} height={760} style={{
-            width: "100%", height: "auto"
-          }} src={"/images/polos/bg.jpg"} />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-3xl font-bold mb-1 tracking-wide"></h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider"></p>
-            <a href="#" className="text-[15px] font-medium relative">Shop Winter Collection
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2387_375x350_crop_center.jpg?v=1743838237" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2272_375x350_crop_center.jpg?v=1743838039" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2387_375x350_crop_center.jpg?v=1743838237" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/ZAW_2272_375x350_crop_center.jpg?v=1743838039" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="products-section">
-        <div className="img w-full my-15">
-          <img src="https://theostrich.pk/cdn/shop/files/Drifit_Banner_958adba5-2c83-4ff6-b061-c9cc8329260e.jpg?v=1748281121" alt="" />
-        </div>
-
-        <div className="px-12 my-22.5">
-          <h2 className="text-3xl font-bold mb-1 tracking-wide"></h2>
-          <div className="desc flex justify-between mb-7.5">
-            <p className="font-extralight tracking-wider"></p>
-            <a href="#" className="text-[15px] font-medium relative">
-              <span className="absolute top-full left-0 w-full h-px bg-[#15151566]"></span>
-            </a>
-          </div>
-          <div className="products grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/FarmanDri-FitDarkGrey-4_375x350_crop_center.png?v=1740553839" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/FarmanDri-FitMaroon-4_375x350_crop_center.png?v=1740553893" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich lavender d
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.3,000.00</div>
-                  <div className="new-price">Rs.1,250.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">M</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-            <div className="product">
-              <div className="img max-w-97.5 max-h-90.5 mb-5 relative">
-                <img src="https://theostrich.pk/cdn/shop/files/FarmanDri-FitLightGrey-4_375x350_crop_center.png?v=1740554290" alt="product" className="w-full h-full object-cover" />
-                <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save 33%</span>
-              </div>
-              <div className="content text-center px-3.5">
-                <h5 className="uppercase text-[16.5px] font-medium mb-1.25">premium ostrich grey
-                </h5>
-                <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
-                  <div className="old-price text-[#A1A1A1] line-through">Rs.2999.00</div>
-                  <div className="new-price">Rs.2000.00</div>
-                </div>
-                <div className="sizes flex justify-center items-center gap-2 mb-2.5">
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">S</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">L</span>
-                  <span className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">XL</span>
-                </div>
-                <button className="group relative overflow-hidden rounded-md bg-white w-full max-w-65 px-6 py-3 font-medium text-[#151515] border border-[#151515] transition-colors duration-300 hover:text-white cursor-pointer">
-                  <span className="relative z-10 uppercase text-sm">Choose options</span>
-                  <div className="absolute inset-0 transform scale-0 origin-bottom-left rounded-md transition-transform duration-300 ease-in-out bg-[#151515] group-hover:scale-100"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {collections.map((c, index) => {
+        if (index == 0) return null;
+        return <Collection key={c.id} collection={collections[index]} />
+      })}
     </div>
   );
 }

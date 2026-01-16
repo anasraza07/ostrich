@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image'
+import Link from 'next/link';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io'
 import { IoSearchOutline } from 'react-icons/io5'
@@ -11,7 +12,7 @@ export default function Header() {
   const [isSubCategory, setIsSubCategory] = useState(false)
   return (
     <header className='bg-white z-20 shadow-sm py-6 sticky top-0'>
-      <div className="w-full px-12 flex items-center">
+      <div className="px-12 flex items-center">
         <nav className='flex-1'>
           <ul className='flex gap-6 relative'>
             {navs.map((nav, index) => (
@@ -59,7 +60,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <Image width={90} height={85} src={"/images/ostrich-logo.png"} alt='Logo' className='brightness-0 h-auto' />
+        <Image width={90} height={85} src={"/images/ostrich-logo.png"} alt='Logo' className='brightness-0 max-w-full h-auto' />
         <div className="actions flex gap-4 flex-1 justify-end">
           <LuUserRound size={24} />
           <IoSearchOutline size={24} />
