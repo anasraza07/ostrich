@@ -8,8 +8,8 @@ interface Props {
   thumbnail: string
 }
 
-export default function ProductCard({ name, oldPrice,
-  price, sizes, thumbnail }: Props) {
+export default function ProductCard({ product: { name, oldPrice,
+  price, sizes, thumbnail } }: { product: Props }) {
 
   const savingPercentage = oldPrice && Math.round((oldPrice - price) / oldPrice * 100);
 
@@ -32,7 +32,7 @@ export default function ProductCard({ name, oldPrice,
             <span key={index} className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">{size}</span>
           ))}
         </div>
-        <Button />
+        <Button text="Choose options" mode="light" className="w-65"/>
       </div>
     </div>
   )

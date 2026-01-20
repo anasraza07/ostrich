@@ -60,7 +60,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <Image width={90} height={85} src={"/images/ostrich-logo.png"} alt='Logo' className='brightness-0 max-w-full h-auto' />
+        <Image width={90} height={85} src={"/images/ostrich-logo.png"} alt='Logo' className='brightness-0 max-w-full w-auto h-auto' />
         <div className="actions flex gap-4 flex-1 justify-end">
           <LuUserRound size={24} />
           <IoSearchOutline size={24} />

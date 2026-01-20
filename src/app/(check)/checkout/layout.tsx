@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
-import "./globals.css";
-import Header from "./_components/Header";
-import AnnouncementSlider from "./_components/AnnouncementSlider";
+import "../../(main)/globals.css";
+import { TbShoppingBag } from "react-icons/tb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +33,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} 
         ${outfit.className} antialiased`}
       >
-        <AnnouncementSlider />
-        <Header />
+        <div className="py-5.25 px-9.5 flex justify-center items-center gap-9.5 border border-[#DEDEDE]">
+          <div className="heading flex-1 text-center text-[22px] font-medium">Ostrich</div>
+          <TbShoppingBag size={24} />
+        </div>
         {children}
       </body>
     </html>

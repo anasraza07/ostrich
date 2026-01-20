@@ -2,7 +2,7 @@ import Image from 'next/image';
 import ProductsSwiper, { Product } from './ProductsSwiper';
 
 interface Collection {
-  id: number,
+  id: number | string,
   collectionBg: string,
   collectionInfo: {
     heading: string,
