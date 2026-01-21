@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "../../(main)/globals.css";
 import { TbShoppingBag } from "react-icons/tb";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const outfit = Outfit({
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,12 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} 
-        ${outfit.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="py-5.25 px-9.5 flex justify-center items-center gap-9.5 border border-[#DEDEDE]">
           <div className="heading flex-1 text-center text-[22px] font-medium">Ostrich</div>
-          <TbShoppingBag size={24} />
+          <Link href={"/cart"}>
+            <TbShoppingBag size={24} />
+          </Link>
         </div>
         {children}
       </body>

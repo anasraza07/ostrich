@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{
       hostname: "theostrich.pk"
+    }, {
+      hostname: "cdn.shopify.com"
     }]
   }
 };

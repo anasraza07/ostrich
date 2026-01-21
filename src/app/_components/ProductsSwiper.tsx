@@ -18,7 +18,7 @@ export default function ProductsSwiper({ products }: {
 }) {
   return (
     <Swiper slidesPerView={4} spaceBetween={28}
-      navigation={true} modules={[Navigation]}>
+      navigation={true} modules={[Navigation]} className="">
       {products.map((product, index) => (
         <SwiperSlide>
           <ProductCard key={index} product={product} />

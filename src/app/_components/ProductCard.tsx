@@ -20,7 +20,8 @@ export default function ProductCard({ product: { name, oldPrice,
         {oldPrice && <span className="saving absolute top-4 left-4 bg-[#279a4b] text-white font-semibold uppercase text-[10px] rounded-full px-2.5 py-1">save {savingPercentage}%</span>}
       </div>
       <div className="content text-center px-3.5">
-        <h5 className="uppercase text-[16.5px] font-medium mb-1.25">{name}
+        <h5 className="uppercase text-[16.5px] font-medium mb-1.25">
+          {name.length > 20 ? name.slice(0, 20) + "..." : name}
         </h5>
         <div className="prices flex justify-center gap-2 text-sm font-medium mb-1">
           {oldPrice && <div className="old-price text-[#A1A1A1] line-through">Rs.{oldPrice}</div>}
@@ -29,10 +30,10 @@ export default function ProductCard({ product: { name, oldPrice,
         <div className="sizes flex justify-center items-center gap-2 
         mb-2.5">
           {sizes.map((size, index) => (
-            <span key={index} className="border border-gray-300 text-gray-600 py-0.5 px-1.25 text-[10px] rounded-md">{size}</span>
+            <span key={index} className="border border-gray-300 hover:border-black text-gray-600 hover:text-white hover:bg-black transition-all py-0.5 px-1.25 text-[10px] rounded-md cursor-pointer">{size}</span>
           ))}
         </div>
-        <Button text="Choose options" mode="light" className="w-65"/>
+        <Button text="Choose options" mode="light" className="w-65" />
       </div>
     </div>
   )

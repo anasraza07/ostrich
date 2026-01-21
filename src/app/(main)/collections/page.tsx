@@ -36,7 +36,7 @@ export default function Collections() {
         <h1 className="uppercase text-[52px] font-semibold">Products</h1>
       </div>
 
-      <main className="px-12 min-h-screen flex gap-15">
+      <main className="px-12 min-h-screen flex gap-15 mb-22.5">
         <div className="filters sticky top-44 left-0 h-fit w-62.5">
 
           <div className="filter-section mb-5">
@@ -83,13 +83,13 @@ export default function Collections() {
             </div>
           </div>
 
-          <div className="filter-section">
+          <div className="filter-section mb-5">
             <div className="header flex items-center">
               <FiMinus className="mr-4.25" />
               <h5 className="text-sm font-semibold uppercase">size</h5>
             </div>
-            <div className="filter-content pt-4 flex flex-col items-start">
-              <ul className="sizes space-y-1.5">
+            <div className="filter-content pt-4 flex flex-col items-start scrollbox no-scrollbar">
+              <ul className="sizes space-y-1.5 max-h-62.5">
                 {["s", "m", "l", "xl", "xxl", "xxxl", "30", "32", "34", "36", "38"].map((size, index) => (
                   <li key={index} className="flex items-center uppercase">
                     <input type="checkbox" id="" className="mt-.5 mr-3" />
@@ -97,12 +97,12 @@ export default function Collections() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div>            
           </div>
         </div>
 
         {/* products */}
-        <div className="products flex-1 min-h-[150vh]">
+        <div className="products flex-1">
           <div className="sorting-and-info flex gap-4 justify-end text-[12px] tracking-wider font-medium mb-7">
             <select name="" id="" className="uppercase" value={selectInputValue} onChange={(e) => console.log(e.target)}>
               {["featured", "best selling", "alphabetically, a-z", "alphabetically, z-a", "price, low to high", "price, high to low", "date, old to new", "date, new to old"]
@@ -119,7 +119,9 @@ export default function Collections() {
             ))}
           </div>
         </div>
+
       </main>
+      <div className="min-h-80 grid place-content-center border">FOOTER</div>
     </div>
   )
 }
